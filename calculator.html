@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculoter</title>
+    <style>
+    .inpu{
+    width: 40vh;
+    height: 50px;
+    border-radius: 1rem;
+    border: solid #111;
+}
+
+.cl{
+    width: 60px;
+    height: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 1rem;
+    font-size: 18px;
+    background-color: dimgray;
+    border-color: aliceblue
+}
+
+.ro1{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 5px;
+}
+
+.c{
+    width: 135px;
+    height: 40px;
+    margin-left: 5px;
+    border-radius: 1rem;
+    font-size: 18px;
+    background-color: dimgray;
+}
+    </style>
+</head>
+<body bgcolor="blue">
+    
+
+        <form name="frm">
+            <input type="text" id="in" name="out" class="inpu " >
+        </form>
+        
+        <div class="ro1">
+        <button id="clear" value="#" onclick="fun(this)" class="cl">clear</button>
+        <button value="()" onclick="fun(this)" class="cl">()</button>
+        <button  value="%" onclick="fun(this)" class="cl">%</button>
+        <button id="but/" value="/" onclick="fun(this)" class="cl">/</button>
+    </div>
+    
+    <div class="ro1">
+        <button id="but7" value="7" onclick="fun(this)" class="cl">7</button>
+        <button id="but8" value="8" onclick="fun(this)" class="cl">8</button>
+        <button id="but9" value="9" onclick="fun(this)" class="cl">9</button>
+        <button id="but*" value="*" onclick="fun(this)" class="cl">x</button>
+    </div>
+
+    <div class="ro1">
+        <button id="but4" value="4" onclick="fun(this)" class="cl">4</button>
+        <button id="but5" value="5" onclick="fun(this)" class="cl">5</button>
+        <button id="but6" value="6" onclick="fun(this)" class="cl">6</button>
+        <button id="but-" value="-" onclick="fun(this)" class="cl">-</button>
+    </div>
+
+    <div class="ro1">
+        <button id="but1"value="1"onclick="fun(this)" class="cl">1</button>
+        <button id="but2"value="2"onclick="fun(this)" class="cl">2</button>
+        <button id="but3" value="3" onclick="fun(this)" class="cl">3</button>
+        <button id="but+" value="+" onclick="fun(this)" class="cl">+</button>
+    </div>
+        
+    <div class="ro1">
+        <button value="0" onclick="fun(this)" class="cl">0</button>
+        <button  value="00" onclick="fun(this)" class="cl">00</button>
+        <button  value="." onclick="fun(this)" class="cl">.</button>
+        <button id="fact" value="!" onclick="fun(this)" class="cl">!</button>
+        
+    </div>
+    <div class="ro1">
+        <button id="p2" value="^^" onclick="fun(this)" class="cl">x^2</button>
+        <button id="p3" value="^^^" onclick="fun(this)" class="cl">x^3</button>
+        <button id="e" value="=" onclick="fun(this)" class="c">=</button>
+    </div>
+    
+    <script>
+    a =0;
+b=0;
+c=0;
+opt="";
+
+function fun(e)
+{
+    //frm.out.value+=e.value;
+
+    v=e.value;
+    if(v=="+")
+    {
+        a=parseInt(frm.out.value);
+        frm.out.value+="+";
+        opt="+"
+    }
+
+    else if(v=="-")
+    {
+        
+            a=parseInt(frm.out.value);
+            frm.out.value+="-";
+            opt="-"
+        
+    }
+
+    else if(v=="*")
+    {
+        
+        a=parseInt(frm.out.value);
+        frm.out.value+="*";
+        opt="*"
+        
+    }
+    else if(v=="/")
+    {
+    
+        a=parseInt(frm.out.value);
+        frm.out.value+="/R";
+        opt="/"
+    
+    }
+    else if(v=="!")
+    {
+        
+            a=parseInt(frm.out.value);
+            
+            f=1;
+            for(i=1;i<=a;i++)
+            {
+                f=f*i;
+            }
+            c=f;
+        frm.out.value=c.toString();
+
+    }
+    else if(v=="^^")
+    {
+        
+            a=parseInt(frm.out.value);
+            s=0;
+            s=a*a;
+            c=s;
+        frm.out.value=c.toString();
+    }
+    else if(v=="^^^")
+    {
+        
+            a=parseInt(frm.out.value);
+            k=0;
+            k=a*a*a;
+            c=k;
+        frm.out.value=c.toString();
+    }
+
+    else if(v=="%")
+    {
+        
+            a=parseInt(frm.out.value);
+            p=0;
+            p=a/100;
+            c=p;
+        frm.out.value=c.toString();
+    }
+
+    else if(v=="()")
+    {
+        
+        j=frm.out.value;
+        
+        for(ind in j){
+            if( j=='(')
+            {
+                frm.out.value+='(';
+            }
+            else
+            {
+                frm.out.value+=')';
+            }
+        }
+            
+        
+    }
+    else if(v=="#")
+    {
+        frm.out.value="";
+    }
+
+    else if(v=="=")
+    {
+        b=parseInt(frm.out.value);
+        if(opt=="+")
+        c=a+b;
+        else if(opt=="-")
+        c=a-b;
+        else if(opt=="*")
+        c=a*b;
+        else if(opt=="/")
+        c=a/b;
+        
+
+
+
+
+        frm.out.value=c.toString();
+
+    }
+
+    else{
+        frm.out.value+=v;
+    }
+}
+        </script>
+        
+</body>
+</html>
